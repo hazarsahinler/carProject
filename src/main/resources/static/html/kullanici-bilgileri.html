@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTOMOBİL DAYANIŞMA Forumu - Kullanıcı Bilgilerim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container-header">
+        <div class="logo-container">
+            <a href="/html/index.html" class="logo-link">
+                <span class="logo-text">OTOMOBİL DAYANIŞMA </span>
+                <span class="logo-subtext">SÜRÜCÜNÜN ADRESİ</span>
+            </a>
+        </div>
+        
+        <nav id="authNav" class="auth-nav">
+            <!-- JS ile doldurulacak -->
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="user-info-container content-box">
+            <h2>Kullanıcı Bilgilerim</h2>
+
+            <!-- Bilgilerin gösterileceği ve düzenleneceği ana alan -->
+            <div id="userInfoWrapper">
+                <p class="loading-user-info">Bilgileriniz yükleniyor...</p>
+            </div>
+
+            <!-- Başarı veya hata mesajlarının gösterileceği alan -->
+            <div id="formFeedback" style="margin-top: 15px;"></div>
+
+            <!-- "Düzenle" ve "Şifre Değiştir" butonlarının olduğu bölüm (Başlangıçta gizli) -->
+            <div id="userInfoActions" class="edit-profile-btn-container" style="text-align: right; margin-top: 25px; display: none;">
+                <button id="editProfileBtn" class="btn btn-primary">Bilgilerimi Düzenle</button>
+                <button id="changePasswordBtn" class="btn btn-secondary">Şifre Değiştir</button>
+            </div>
+
+            <!-- Şifre değiştirme formu (Başlangıçta gizli) -->
+            <div id="changePasswordFormContainer" style="display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                <h4>Şifre Değiştir</h4>
+                <form id="changePasswordForm">
+                    <div class="form-group">
+                        <label for="currentPassword">Mevcut Şifreniz</label>
+                        <input type="password" id="currentPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Yeni Şifreniz</label>
+                        <input type="password" id="newPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmNewPassword">Yeni Şifreniz (Tekrar)</label>
+                        <input type="password" id="confirmNewPassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Şifreyi Kaydet</button>
+                    <button type="button" id="cancelChangePassword" class="btn btn-light">İptal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2024 Araba Bilgi Forumu</p>
+    </div>
+</footer>
+
+<script src="/js/app.js"></script>
+<script src="/js/kullanici-bilgileri.js"></script> <!-- Bu dosyayı aşağıda güncelleyeceğiz -->
+</body>
+</html>

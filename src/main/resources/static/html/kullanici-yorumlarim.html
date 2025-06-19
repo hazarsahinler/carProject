@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yorumlarım - OTOMOBİL DAYANIŞMA Forumu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header> <!-- kullanici-konularim.html ile aynı basit header yapısı -->
+    <div class="container-header">
+        <div class="logo"> <!-- Logo class'ı kullanici-konularim.html'deki gibi -->
+            <a href="/html/index.html">OTOMOBİL DAYANIŞMA</a>
+        </div>
+        <nav class="main-nav"> <!-- kullanici-konularim.html'deki gibi ana navigasyon -->
+            <a href="/html/index.html" class="nav-link">Ana Sayfa</a>
+            <!-- Bu sayfadaki "Yeni Konu Aç" linki için aynı ID'yi kullanıyoruz, JS bunu yönetecek -->
+            <a href="javascript:void(0);" id="globalYeniKonuAcLinkPage" class="nav-link btn btn-cta" style="display:none;"> <!-- Başlangıçta gizli, JS token varsa gösterecek -->
+                <i class="fas fa-plus-circle"></i> Yeni Konu Aç
+            </a>
+        </nav>
+        <nav id="authNav" class="auth-nav">
+            <!-- JS ile doldurulacak (Giriş/Kayıt veya Kullanıcı Menüsü) -->
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <!-- Konuları listelemek için content-box ve icerik-bolumu class'larını kullanalım -->
+        <section class="content-box icerik-bolumu" id="kullanici-yorumlar-bolumu"> <!-- ID eklendi -->
+            <h2><i class="fas fa-comments"></i> Yaptığım Yorumlar</h2> <!-- Başlık konularım sayfasıyla benzer -->
+            <div id="kullaniciYorumlarListesi">
+                <!-- Yorumlar buraya JS ile eklenecek -->
+                <p class="loading">Yorumlarınız yükleniyor...</p>
+            </div>
+            <div id="kullaniciYorumlarMessage" class="message-area" style="display:none;"></div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2024 OTOMOBİL DAYANIŞMA Forumu. Tüm hakları saklıdır.</p>
+    </div>
+</footer>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

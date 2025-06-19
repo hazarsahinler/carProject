@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTOMOBİL DAYANIŞMA Forumu-KAYIT OL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container-header">
+        <div class="logo-container">
+            <a href="/html/index.html" class="logo-link">
+                <span class="logo-text">OTOMOBİL DAYANIŞMA </span>
+                <span class="logo-subtext">SÜRÜCÜNÜN ADRESİ</span>
+            </a>
+        </div>
+
+
+        <nav id="authNav" class="auth-nav">
+            <!-- JS ile doldurulacak -->
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container"> <!-- Ana container eklendi -->
+        <div class="auth-container content-box" id="kayitFormContainer"> <!-- content-box ve ID eklendi, CSS'te #kayitForm .auth-container yerine #kayitFormContainer kullanılabilir -->
+            <h1>Kayıt Ol</h1>
+            <form id="kayitForm">
+                <div class="form-group">
+                    <label for="kullaniciAdi">Adınız:</label>
+                    <input type="text" id="kullaniciAdi" name="kullaniciAdi" required>
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciSoyadi">Soyadınız:</label>
+                    <input type="text" id="kullaniciSoyadi" name="kullaniciSoyadi" required>
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciCinsiyet">Cinsiyet:</label>
+                    <select id="kullaniciCinsiyet" name="kullaniciCinsiyet" required>
+                        <option value="">Seçiniz...</option>
+                        <option value="Erkek">Erkek</option>
+                        <option value="Kadın">Kadın</option>
+                        <option value="Belirtmek İstemiyorum">Belirtmek İstemiyorum</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciEposta">E-posta Adresiniz:</label>
+                    <input type="email" id="kullaniciEposta" name="kullaniciEposta" required>
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciSifre">Şifre:</label>
+                    <input type="password" id="kullaniciSifre" name="kullaniciSifre" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciSifreTekrar">Şifre Tekrar:</label>
+                    <input type="password" id="kullaniciSifreTekrar" name="kullaniciSifreTekrar" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciArac">Aracınız (Marka Model):</label>
+                    <input type="text" id="kullaniciArac" name="kullaniciArac" placeholder="Örn: Fiat Egea 1.4">
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciSehir">Şehir:</label>
+                    <select id="kullaniciSehir" name="kullaniciSehir" required>
+                        <option value="">Şehir Seçiniz...</option>
+                        <!-- Şehirler auth.js tarafından dinamik olarak eklenecek -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciDogumTarih">Doğum Tarihi:</label>
+                    <input type="date" id="kullaniciDogumTarih" name="kullaniciDogumTarih" required>
+                </div>
+                <div class="form-group">
+                    <label for="kullaniciMeslek">Meslek:</label>
+                    <input type="text" id="kullaniciMeslek" name="kullaniciMeslek">
+                </div>
+                <button type="submit" class="btn btn-submit">Kayıt Ol</button>
+            </form>
+            <div id="kayitMessage" class="message-area" style="display:none;"></div>
+            <a href="/html/giris.html" class="auth-redirect-link">Zaten bir hesabın var mı? Giriş Yap</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2024 Araba Bilgi Forumu</p>
+    </div>
+</footer>
+
+<script src="/js/auth.js"></script>
+<!-- <script src="/js/app.js"></script> -->
+</body>
+</html>

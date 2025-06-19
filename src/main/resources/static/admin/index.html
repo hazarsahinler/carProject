@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="css/admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+<div class="admin-wrapper">
+    <!-- Sol Menü (Sidebar) -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <!-- DEĞİŞTİRİLDİ -->
+            <h3>OTOMOBİL DAYANIŞMA ADMİN PANELİ</h3>
+        </div>
+        <!-- index.html dosyasındaki sidebar-nav bölümünü bulun -->
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#" id="nav-dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Pano</a></li>
+                <li><a href="#" id="nav-users"><i class="fas fa-users"></i> Kullanıcılar</a></li>
+                <li><a href="#" id="nav-topics"><i class="fas fa-file-alt"></i> Tüm Konular</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" id="adminLogoutBtn"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+        </div>
+    </aside>
+
+    <!-- Ana İçerik Alanı -->
+    <main class="content-area">
+        <header class="content-header">
+            <h1 id="content-title">Pano</h1>
+        </header>
+        <div class="content-body">
+            <!-- İçerik JavaScript ile buraya yüklenecek -->
+            <div id="main-content">
+                <p>Hoş geldiniz! Yönetmek istediğiniz bölümü sol menüden seçin.</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/admin.js"></script>
+<!-- BU KODU KOPYALAYIP </body>'DEN ÖNCE YAPIŞTIRIN -->
+<div id="dataModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">×</span>
+        <h2 id="modalTitle">Detaylar</h2>
+        <div id="modalBody"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konu Yorumları - Araç Bilgi Forum</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; color: #333; line-height: 1.6;}
+        header { background-color: #333; color: white; padding: 1em 1.5em; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header .site-title a { color: white; text-decoration: none; font-size: 1.8em; font-weight: bold;}
+        .container { max-width: 800px; margin: 2em auto; padding: 1.5em; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 0.5em; margin-bottom: 1em; }
+        .yorum-item { border: 1px solid #e0e0e0; padding: 1em; margin-bottom: 1em; border-radius: 5px; background-color: #f9f9f9; }
+        .yorum-item .meta-user { font-weight: bold; color: #333; margin-bottom: 0.3em; }
+        .yorum-item .meta-date { font-size: 0.85em; color: #777; margin-bottom: 0.5em; }
+        .yorum-item .icerik { margin-top: 0.5em; color: #444; }
+        .yorum-item .likes-dislikes { font-size:0.85em; margin-top: 10px; color: #666; }
+        .loading-indicator, .error-message, .info-message {
+            text-align: center; padding: 1em; margin-top: 1em; border-radius: 4px;
+        }
+        .loading-indicator { font-style: italic; color: #555; background-color: #f0f0f0; display: none; }
+        .error-message { color: #D8000C; background-color: #FFD2D2; display: none; }
+        .info-message { color: #00529B; background-color: #BDE5F8; display: none; }
+        .back-link { display: inline-block; margin-bottom: 1.5em; color: #007bff; text-decoration: none; font-size: 0.9em; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="site-title"><a href="index.html">Araç Bilgi Forum</a></div>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">« Konu Listesine Geri Dön</a>
+    <h1>Konu Yorumları</h1>
+
+    <div id="loading-indicator-yorum" class="loading-indicator">Yorumlar Yükleniyor...</div>
+    <div id="error-message-yorum" class="error-message">Bir hata oluştu.</div>
+    <div id="info-message-yorum" class="info-message"></div>
+
+    <div id="yorumlar-container">
+        <!-- Yorumlar buraya yüklenecek -->
+    </div>
+</div>
+
+<script>
+    const API_BASE_URL = '/api';
+    const yorumlarContainer = document.getElementById('yorumlar-container');
+    const loadingIndicatorYorum = document.getElementById('loading-indicator-yorum');
+    const errorMessageYorum = document.getElementById('error-message-yorum');
+    const infoMessageYorum = document.getElementById('info-message-yorum');
+
+    function showLoadingYorum(show) {
+        loadingIndicatorYorum.style.display = show ? 'block' : 'none';
+    }
+
+    function displayMessageYorum(element, message, show) {
+        element.textContent = message || '';
+        element.style.display = show ? 'block' : 'none';
+    }
+
+    // fetchData fonksiyonu index.html'deki ile aynı mantıkta
+    async function fetchDataYorum(url) {
+        showLoadingYorum(true);
+        displayMessageYorum(errorMessageYorum, '', false);
+        displayMessageYorum(infoMessageYorum, '', false);
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+
+            if (!response.ok) {
+                throw new Error(`API Hatası (${response.status}): ${text || response.statusText}`);
+            }
+
+            if (text.toLowerCase().includes("no record found") || text.trim() === "" || text.trim() === "[]") {
+                return [];
+            }
+
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                console.error("JSON parse error:", e, "Response text:", text);
+                throw new Error("Sunucudan gelen yanıt JSON formatında değil.");
+            }
+        } catch (error) {
+            console.error('Yorum verisi çekme hatası:', error);
+            displayMessageYorum(errorMessageYorum, error.message, true);
+            throw error;
+        } finally {
+            showLoadingYorum(false);
+        }
+    }
+
+
+    async function loadYorumlar(konuId) {
+        yorumlarContainer.innerHTML = '';
+        try {
+            const data = await fetchDataYorum(`${API_BASE_URL}/yorum/yorumlar?konuId=${konuId}`);
+            if (data && data.length > 0) {
+                data.forEach(yorum => {
+                    const yorumElement = document.createElement('div');
+                    yorumElement.classList.add('yorum-item');
+                    yorumElement.innerHTML = `
+                            <p class="meta-user">${yorum.kullaniciBilgi || 'Bilinmeyen Kullanıcı'}</p>
+                            <p class="meta-date">${yorum.yorumTarihi || 'Tarih Yok'}</p>
+                            <div class="icerik">${yorum.yorumBilgi || 'İçerik yok'}</div>
+                            <p class="likes-dislikes">
+                                Beğeni: ${yorum.likeSayisi !== undefined ? yorum.likeSayisi : 0} |
+                                Beğenmeme: ${yorum.dislikeSayisi !== undefined ? yorum.dislikeSayisi : 0}
+                            </p>
+                        `;
+                    yorumlarContainer.appendChild(yorumElement);
+                });
+            } else {
+                displayMessageYorum(infoMessageYorum, 'Bu konu için henüz yorum yapılmamış.', true);
+            }
+        } catch (e) { /* error already handled by fetchDataYorum */ }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const konuId = urlParams.get('konuId');
+
+        if (konuId) {
+            loadYorumlar(konuId);
+        } else {
+            displayMessageYorum(errorMessageYorum, 'Konu ID bulunamadı. Lütfen konu listesinden bir konu seçin.', true);
+            console.error('URL\'de konuId parametresi eksik.');
+        }
+    });
+</script>
+</body>
+</html>

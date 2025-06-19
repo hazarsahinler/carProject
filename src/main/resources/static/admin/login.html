@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Girişi</title>
+    <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+<div class="login-container">
+    <!-- DEĞİŞTİRİLDİ -->
+    <h2>OTOMOBİL DAYANIŞMA ADMİN PANELİ</h2>
+    <form id="adminLoginForm" novalidate>
+        <div class="form-group">
+            <label for="kullaniciEposta">E-posta</label>
+            <input type="email" id="kullaniciEposta" required>
+        </div>
+        <div class="form-group">
+            <label for="kullaniciSifre">Şifre</label>
+            <input type="password" id="kullaniciSifre" required>
+        </div>
+        <button type="submit" class="btn">Giriş Yap</button>
+        <div id="loginMessage" class="message-area" style="display:none;"></div>
+    </form>
+</div>
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTOMOBİL DAYANIŞMA Forumu - Ana Sayfa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container-header">
+        <div class="logo-container">
+            <a href="/html/index.html" class="logo-link">
+                <span class="logo-text">OTOMOBİL DAYANIŞMA </span>
+                <span class="logo-subtext">SÜRÜCÜNÜN ADRESİ</span>
+            </a>
+        </div>
+
+        <!-- DEĞİŞİKLİK BURADA BAŞLIYOR -->
+        <!-- DEĞİŞİKLİK BURADA BAŞLIYOR -->
+        <div class="header-search"> <!-- Bu div'e bir pozisyon referansı olması için stil ekleyeceğiz -->
+            <!-- Forma ve input'a ID eklendi -->
+            <form id="headerSearchForm" action="#" method="get" autocomplete="off"> <!-- autocomplete kapatıldı -->
+                <input type="search" id="headerSearchInput" name="q" placeholder="Konu, marka, model ara..." class="search-input">
+                <button type="submit" class="search-icon-btn"><i class="fas fa-search"></i></button>
+            </form>
+            <!-- YENİ EKLENEN ARAMA SONUÇLARI ALANI -->
+            <div id="searchResultsContainer" class="search-results-dropdown">
+                <!-- Arama sonuçları JS ile buraya eklenecek -->
+            </div>
+        </div>
+        <!-- DEĞİŞİKLİK BURADA BİTİYOR -->
+        <!-- DEĞİŞİKLİK BURADA BİTİYOR -->
+
+        <nav id="authNav" class="auth-nav">
+            <!-- JS ile doldurulacak -->
+        </nav>
+    </div>
+</header>
+<!-- ID eklendi: infoBarContainer -->
+<div class="info-bar-container" id="infoBarContainer">
+    <div class="container">
+        <div class="info-bar">
+            <i class="fas fa-info-circle info-icon"></i>
+            <span>Foruma kayıt olmak için <a href="/html/kayit.html" class="info-link">tıklayın</a> !</span>
+            <button class="close-info-bar" aria-label="Bilgilendirme çubuğunu kapat" onclick="this.parentElement.parentElement.style.display='none';">×</button>
+        </div>
+    </div>
+</div>
+
+<main>
+    <!-- ID eklendi: welcomeBannerSection -->
+    <section class="welcome-banner" id="welcomeBannerSection">
+        <div class="container">
+            <div class="welcome-content">
+                <h1>OTOMOBİL DAYANIŞMA Forumu'na Hoşgeldiniz!</h1>
+                <p>Türkiye’nin Otomobil Dayanışma Platformu
+                    Kullandığınız araçlarla ilgili deneyimlerinizi paylaşabileceğiniz, diğer kullanıcıların tecrübelerinden faydalanabileceğiniz güvenilir bir otomobil topluluğuna hoş geldiniz.
+                    Yeni bir araç satın almayı düşünüyorsanız, aklınızdaki soruları yöneltebilir; bilgi sahibi üyelerimizin rehberliğinde doğru kararı verebilirsiniz.
+                    Hemen üye olun, otomobil tutkunlarının bir parçası olun!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="forum-list-header">
+            <h2>Forum listesi</h2>
+            <!-- Bu linkin ID'si app.js'de doğrudan kullanılmıyor gibi görünüyor,
+                 ama genel bir "Yeni Konu Aç" butonuysa ve JS ile yönetilecekse ID'si önemli olabilir. -->
+            <a href="javascript:void(0);" id="globalYeniKonuAcLinkMain" class="btn btn-cta" style="display:none;">
+                <i class="fas fa-plus-circle"></i> Yeni Konu Aç
+            </a>
+        </section>
+
+        <section class="secim-alani content-box"> <!-- content-box eklendi -->
+            <h3><i class="fas fa-search-location"></i> Konuları Filtrele veya Yeni Konu Başlat</h3>
+            <div class="dropdown-container">
+                <!-- İkon eklendi -->
+                <label for="arabaSelect"><i class="fas fa-car-side label-icon"></i>Araba Markası:</label>
+                <select id="arabaSelect">
+                    <option value="">Marka Seçiniz...</option>
+                </select>
+            </div>
+            <div class="dropdown-container">
+                <!-- İkon eklendi -->
+                <label for="modelSelect"><i class="fas fa-car label-icon"></i>Model:</label>
+                <select id="modelSelect" disabled>
+                    <option value="">Önce Marka Seçiniz...</option>
+                </select>
+            </div>
+            <div class="dropdown-container">
+                <!-- İkon eklendi -->
+                <label for="motorSelect"><i class="fas fa-cogs label-icon"></i>Motor:</label>
+                <select id="motorSelect" disabled>
+                    <option value="">Önce Model Seçiniz...</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- index.html içindeki ilgili bölüm -->
+        <section id="yeni-konu-bolumu" class="content-box" style="display: none;">
+            <h3>Yeni Konu Başlat</h3>
+            <form id="yeniKonuForm">
+                <div class="form-group">
+                    <label for="konuBaslikInput">Konu Başlığı:</label>
+                    <input type="text" id="konuBaslikInput" name="konuBaslik" required>
+                </div>
+                <!-- YENİ EKLENDİ: Konu İçeriği Alanı -->
+                <div class="form-group">
+                    <label for="konuIcerikInput_index">Konu İçeriği (İlk Mesajınız):</label>
+                    <textarea id="konuIcerikInput_index" name="konuIcerik_index" rows="5" placeholder="Sorunuzu veya paylaşmak istediklerinizi detaylandırın..." required></textarea>
+                </div>
+                <input type="hidden" id="seciliModelIdInput" name="Model">
+                <input type="hidden" id="seciliMotorIdInput" name="Motor">
+                <button type="submit" class="btn btn-submit"><i class="fas fa-paper-plane"></i> Konuyu Yayınla</button>
+                <button type="button" id="yeniKonuIptalBtn" class="btn btn-secondary" style="margin-left: 10px;"><i class="fas fa-times"></i> İptal</button>
+            </form>
+            <div id="yeniKonuMessage" class="message-area" style="display:none;"></div>
+        </section>
+
+        <div id="yeniKonuAcButonAlani" style="text-align: right; margin-bottom: 20px; display: none;">
+            <button id="yeniKonuAcBtn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Bu Araç İçin Yeni Konu Aç
+            </button>
+        </div>
+
+        <section id="konular-bolumu" class="icerik-bolumu" style="display: none;">
+            <h2><i class="far fa-comments"></i> Seçilen Araçla İlgili Konular</h2>
+            <div id="konularListesi">
+                <!-- Konu item'ları buraya gelecek -->
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer> <!-- class="site-footer-bottom" kaldırıldı -->
+    <div class="container">
+        <p>© 2024 OTOMOBİL DAYANIŞMA Forumu. Tüm hakları saklıdır.</p>
+    </div>
+</footer>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

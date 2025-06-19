@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title JS ile dinamik olarak güncellenecek -->
+    <title>OTOMOBİL DAYANIŞMA Forumu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- GÜNCELLENMİŞ HEADER: Arama çubuğu için ID'ler ve yapı eklendi -->
+<header class="site-header">
+    <div class="container-header">
+        <div class="logo-container">
+            <a href="/html/index.html" class="logo-link">
+                <span class="logo-text">OTOMOBİL DAYANIŞMA</span>
+                <span class="logo-subtext">SÜRÜCÜNÜN ADRESİ</span>
+            </a>
+        </div>
+
+        <!-- YENİ EKLENDİ: Arama Çubuğu (index.html'deki gibi) -->
+        <div class="header-search">
+            <form id="headerSearchForm" action="#" method="get" autocomplete="off">
+                <input type="search" id="headerSearchInput" name="q" placeholder="Konu, marka, model ara..." class="search-input">
+                <button type="submit" class="search-icon-btn"><i class="fas fa-search"></i></button>
+            </form>
+            <!-- Arama sonuçları için dropdown konteyneri -->
+            <div id="searchResultsContainer" class="search-results-dropdown">
+                <!-- Arama sonuçları JS ile buraya eklenecek -->
+            </div>
+        </div>
+
+        <nav id="authNav" class="auth-nav">
+            <!-- JS ile doldurulacak -->
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <!-- content-box class'ı estetik için önemli -->
+        <section id="konu-detay-bolumu" class="content-box">
+            <div id="konuYukleniyor" class="loading" style="display:block;">Konu yükleniyor...</div>
+            <div id="konuIcerigiAlani" style="display:none;">
+                <!-- Konu detayı JS ile buraya gelecek -->
+            </div>
+            <!-- YENİ EKLENDİ: Silme ve oylama mesajları için genel bir alan -->
+            <div class="message-area" style="display:none; margin-top:15px;"></div>
+        </section>
+
+        <section id="yorumlar-bolumu-detay" class="icerik-bolumu" style="display:none;">
+            <h2><i class="far fa-comments"></i> Yorumlar</h2>
+            <div id="yorumlarYukleniyor" class="loading" style="display:none;">Yorumlar yükleniyor...</div>
+            <div id="yorumlarListesiDetay">
+                <!-- Yorumlar buraya dinamik olarak eklenecek -->
+            </div>
+            <!-- Yorum formu HTML'i de güncellendi -->
+            <form id="yeniYorumFormuDetay" class="content-box" style="display: none;">
+                <h3><i class="fas fa-pen"></i> Yeni Yorum Ekle</h3>
+                <div class="form-group">
+                    <textarea id="yeniYorumTextDetay" name="yorum" rows="4" placeholder="Yorumunuzu buraya yazın..." required></textarea>
+                </div>
+                <button id="yorumGonderBtnDetay" type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Yorumu Gönder
+                </button>
+                <div id="yeniYorumMessageDetay" class="message-area" style="display:none; margin-top:15px;"></div>
+            </form>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2024 OTOMOBİL DAYANIŞMA Forumu. Tüm hakları saklıdır.</p>
+    </div>
+</footer>
+
+<!-- ÖNCE app.js, SONRA konu-detay.js ÇAĞRILMALI -->
+<!-- app.js, header'ı ve arama çubuğunu yönetecek -->
+<script src="/js/app.js"></script>
+<!-- konu-detay.js, sayfanın geri kalanını yönetecek -->
+<script src="/js/konu-detay.js"></script>
+</body>
+</html>
